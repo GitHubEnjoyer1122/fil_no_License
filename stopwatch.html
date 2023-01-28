@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+</head>
+<body>
+    <style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    min-height: 100vh;
+    background: orange;
+}
+
+h1, h4{
+    text-align: center;
+    color: white;
+    font-family: 'Unbounded', cursive;;
+}
+#waktu, #waktu2, #waktup, #waktu3{
+    font-size: larger;
+    text-align: center;
+    color: white;
+    font-family: 'Unbounded', cursive;;
+    margin: 50px;
+}
+.par{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.buttons{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 50px;
+}
+button{
+    background-color: transparent;
+    border: 3px solid white;
+    font-family: 'Unbounded', cursive;
+    font-size: larger;
+    color: white;
+    cursor: pointer;
+}
+.waktupar{
+    display: flex;
+    flex-flow: row;
+    margin: 50px;
+    padding: 0 !important;
+}
+
+.waktupar > div{
+    width: 35px;
+    margin: 0 !important;
+}
+
+#waktup{
+    width: fit-content;
+}
+    </style>
+
+
+<main class="par">
+    <h1>
+        JavaScript StopWatch
+    </h1>
+    <h4>By:MafdhalRz</h4>
+
+    <div class="waktupar">
+    <div id="waktu">00</div>
+    <div id="waktup">:</div>
+    <div id="waktu2">00</div>
+    <div id="waktup">:</div>
+    <div id="waktu3">00</div>
+    </div>
+
+    <div class="buttons">
+    <button onclick="start()">Start</button>
+    <button onclick="stopit()">Stop</button>
+    <button onclick="resetit()">Reset</button>
+    </div>
+</main>
+    <script>
+        var waktu = document.getElementById('waktu')
+        var waktu2 = document.getElementById('waktu2')
+        var waktu3 = document.getElementById('waktu3')
+        var countero = 00;
+        var counteri = 00;
+        var countere = 00;
+
+        function start(){
+           jam = setInterval(function(){
+                countero++
+                waktu3.innerHTML = countero
+
+                if(countero > 99){
+                    countero = 00
+                    counteri++
+                    waktu2.innerHTML = "0" + counteri ;
+                }
+
+                if(counteri > 9){
+                    waktu2.innerHTML = counteri ;
+                }
+
+                if(counteri > 59){
+                    counteri = 00
+                    countere++
+                    waktu.innerHTML = "0" + countere;
+                }
+
+                if(countere > 9){
+                    waktu.innerHTML = countere ;
+                }
+
+            }, 8)
+        }
+
+        function stopit(){
+            clearTimeout(jam);
+        }
+
+        function resetit(){
+            stopit();
+            countero = 0;
+            counteri = 0;
+            waktu.innerHTML = "00"
+            waktu2.innerHTML = "00"
+            waktu3.innerHTML = "00"
+        }
+
+    </script>
+</body>
+</html>
